@@ -25,18 +25,25 @@ session_start();
             $row=mysqli_fetch_array($run_user);
 
             $user_name=$row['username'];
+            $user_id=$row['user_id'];
 
          ?>
-            <img class="home-pic" width="75px" height="75px" src="<?php echo $row['user_image'];?>">
-            <h3 class="usrname"><b>Üdv </b><?php echo '@'.$row['username'].'';?></h3>
+            <img class="home-pic" width="55px" height="55px" src="<?php echo $row['user_image'];?>">
+            <a class="usrname" href="profile.php?<?php echo "u_id=$user_id"?>"><b>Üdv </b><?php echo '@'.$row['username'].'';?></a>
+
         </div>
         <div class="header-info">
-            <h3>Üdvözöllek a VTS közösségi médián!</h3>
+            <a href="x"><i class="far fa-comments"></i>Üzenetek</a>
+            <a href="x"><i class="far fa-bell"></i>Értesítések</a>
+            <a href="x"><i class="fas fa-blog"></i>Bejegyzések</a>
         </div>
         <div class="header-login">
+            <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Kijelentkezés</a>
 
         </div>
     </div>
+    <div class="main"></div>
+    <div class="footer"></div>
 </div>
 
 

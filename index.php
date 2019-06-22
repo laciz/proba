@@ -16,14 +16,14 @@
 <div class="container">
     <div class="header">
         <div class="header-logo">
-            <img src="images/logo.png">
+            <img  class="logo" src="images/logo.png">
         </div>
         <div class="header-info">
-            <h3>Üdvözöllek a VTS közösségi médián!</h3>
+            <h3>Üdvözöllek a VTS diákok közösségi oldalán</h3>
         </div>
         <div class="header-login">
-            <button class="log-btn"  onclick="LoginRegister(1)"> Bejelentkezés</button>
-            <button class="reg-btn"  onclick="LoginRegister(2)"> Regisztráció</button>
+            <button class="log-btn"  onclick="LoginRegister(1)"><i class="fas fa-sign-in-alt"></i>Bejelentkezés</button>
+            <button class="reg-btn"  onclick="LoginRegister(2)"><i class="fas fa-user-plus"></i>Regisztráció</button>
         </div>
     </div>
     <div class="main">
@@ -77,7 +77,7 @@
         </div>
     </div>
     <div class="footer">
-        <i class="fab fa-facebook-square"></i>
+       <i class="fab fa-facebook-square"></i>
         <i class="fab fa-instagram"></i>
         <i class="fab fa-twitter-square"></i>
 

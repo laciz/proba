@@ -10,47 +10,53 @@ body{
     flex-direction: column;
 }
 .header{
-    flex:1;
+
     width: 100%;
     background-color: white;
-    height: 150px;
+    height: 100px;
     display: grid;
     grid-template-columns: 20% 60% 20%;
     justify-items: center;
     justify-content: center;
-
+    border-bottom: 1px solid black;
+   padding-top: 5px;
 }
 .header div{
 
     text-align: center;
-    height: 150px;
+    height: 100px;
     width: 100%;
     align-items: center;
 }
 .header-info{
     font-family: 'Indie Flower', cursive;
+    justify-items: center;
+    justify-content: center;
 
 }
 
 .log-btn, .reg-btn {
 text-decoration: none;
-    color: black;
+    color: white;
+    font-weight: bold;
     padding: 5px 5px 5px 5px;
-    background-color: white;
-    border: 1px solid #0093dd;
+    background-color: #0093dd;
+    border-left: 7px solid #45a049;
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+
+
 }
 .log-btn:hover, .reg-btn:hover{
     text-decoration: none;
     color: white;
     padding: 5px 5px 5px 5px;
-    background-color: #0093dd;
-    border: 1px solid #0093dd;
+    background-color: #45a049;
+
 }
 
-.header img {
-    width: 65px;
-    height: 65px;
-}
+
 .main {
     flex:4;
     background-color: #0093dd;
@@ -150,4 +156,71 @@ input[type=submit]:hover {
 .usrname{
     color: #0093dd;
     font-size: 12px;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+
+}
+.header-info a{
+    text-decoration: none;
+    font-size: 16px;
+    padding: 5px 5px 5px 5px;
+    color: darkgrey;
+    font-family: 'Montserrat', sans-serif;
+}
+.header-login a,i{
+    text-decoration: none;
+    color: darkgrey;
+    padding: 3px 3px 3px 3px;
+    font-family: 'Montserrat', sans-serif;
+}
+.header-login i {
+    color: black;
+}
+.header-info i {
+    font-size: 25px;
+    color: darkgrey;
+}
+.logo {
+    width: 100px;
+    height: 100px;
+}
+.header-logo h3{
+    margin: 0;
+    padding: 2px;
+}
+.header-logo {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+.upld{
+    width: 50%;
+}
+.tbl tr,td{
+    width: 5px;
+    margin:0;
+    padding:0;
+}
+ul ,li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+}
+.name{
+    color: black;
+    font-weight: bold;
+    font-size: 12px;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+}
+.szakirany{
+    color: green;
+    font-weight: bold;
+    font-size: 12px;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
 }
