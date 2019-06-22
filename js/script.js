@@ -89,3 +89,10 @@ function formValidation(){
 
 }
 
+function SettingPop(x){
+    alert('x');
+    var span = document.getElementsByClassName("prof-settings");
+      if (x==1){
+          span[0].style.display='block';
+      }
+}
