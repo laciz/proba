@@ -18,7 +18,7 @@ include 'connection.php';
     $user_id=$row['user_id'];
 
     ?>
-<title><?php echo $row['username'];?></title>
+<title><?php echo $row['f_name'];?></title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Montserrat&display=swap" rel="stylesheet">
@@ -47,7 +47,7 @@ include 'connection.php';
                       <li><p class="name"><?php echo $row['f_name'].$row['l_name'];?></p></li>
                       <li><p class="usrname"><?php echo '@'.$row['username'].'';?></p></li>
                       <li><p class="szakirany"><?php echo $row['szakirany'];?></p></li>
-                      <a class="prof-settings" onclick="SettingPop(1)"><li><i class="fas fa-user-cog"></i></li></a>
+                      <li><i class="fas fa-user-cog" onclick="SettingPop(1)"></i></li>
                     </ul>
 
 
@@ -103,9 +103,10 @@ include 'connection.php';
 
     </div>
     <div class="header-info">
+        <div class="nav">
         <a href="x"><i class="far fa-comments"></i>Üzenetek</a>
         <a href="x"><i class="far fa-bell"></i>Értesítések</a>
-        <a href="x"><i class="fas fa-blog"></i>Bejegyzések</a>
+        <a href="x"><i class="fas fa-blog"></i>Bejegyzések</a></div>
     </div>
     <div class="header-login">
         <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Kijelentkezés</a>
@@ -118,7 +119,9 @@ include 'connection.php';
    <div class="sett"></div>
     <div class="settings">
 
+
         <a onclick="SettingPop(2)" <i class="fas fa-times-circle"></i></a>
+
 
         <h3>Beállítások</h3>
         <h4>Profilkép frissítése</h4>

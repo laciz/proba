@@ -14,6 +14,8 @@ if (isset($_POST['login'])){
         $_SESSION['email']=$email;
         header("Location: home.php");
     }else{
-        echo "error";
+        echo "<script>alert('Hibás adatokat adtál meg..')</script>";
+        echo "<script>window.location.replace('../index.php','_self')</script>";
+
     }
 }
