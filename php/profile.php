@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <?php session_start();
+header('Content-Type: text/html; charset=utf-8');
 include 'connection.php';
+include 'functions.php';
 if (!isset($_SESSION['email'])){
     header("Location : index.php");
 }
-
+ profileChanges();
 ?>
 <html>
 <head>
@@ -36,23 +38,15 @@ if (!isset($_SESSION['email'])){
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <script src="https://kit.fontawesome.com/ec2a35f277.js"></script>
+    <script src="../js/script.js"></script>
 </head>
 <body>
-<script>
-    function SettingPop(x){
-        var span = document.getElementsByClassName('settings');
-        if (x==1){
-            span[0].style.display='block';
-        }
-        if (x==2){
-            span[0].style.display='none ';
-        }
-    }
-</script>
+
 <div class="container">
     <div class="row row-no-gutters">
         <div id="colxs6" class="col-xs-6 col-md-4">
             <img class="home-pic" width="155px" height="155px" src="<?php echo $row['user_image'];?>">
+
             <p class="name"><?php echo $row['f_name'].'  '.$row['l_name'];?></p>
             <?php
          $session_user=$_SESSION['email'];
@@ -62,7 +56,7 @@ if (!isset($_SESSION['email'])){
 
           if($row_session_user['user_id']==$row['user_id']){ ?>
 
-              <i class="fas fa-user-cog"></i>
+              <i  id="fasfa" class="fas fa-user-cog" onclick="SettingPop(1)"> </i>
 
             <?php } ?>
 
@@ -114,7 +108,7 @@ if (!isset($_SESSION['email'])){
 
         </div>
         <div class="col-xs-6 col-md-4">
-             <img src="<?php echo $row['cover_image'];?>" width="700px" height="300px">
+             <img src="<?php echo $row['cover_image'];?>" width="703px" height="307px">
 
     </div>
         <div class="container">
@@ -129,6 +123,65 @@ if (!isset($_SESSION['email'])){
             </div>
 
         </div>
+    <div id="mainrow-2" class="row">
+     <div id="mainrowcol" class="col">
+        <form  id="f2" action="profile.php?<?php echo "uid=$user" ?>" method="post" enctype="multipart/form-data">
+            <i class="far fa-times-circle" onclick="SettingPop(2)"> </i>
+            <h3>Profilkép frissítése</h3>
+            <input  type="file"  id="prof-image" name="prof-image" class="inputfile"  size="12">
+            <!-- </label>-->
+            <h3>Boritókép frissítése</h3>
+            <input  type="file"  id="cover-image" name="cover-image" class="inputfile"  size="12">
+            <!-- </label>-->
+            <button   class="btn btn-primary" name="sub"  >Frissítés</button>
+
+
+        </form>
+         <?php
+         if (isset($_POST['sub'])){
+             global $con;
+
+             $image = $_FILES['cover-image']['name'];
+             $image_tmp = $_FILES['cover-image']['tmp_name'];
+             $random_number = rand(1, 100);
+
+             $profile_image=$_FILES['prof-image']['name'];
+             $profile_image_tmp=$_FILES['prof-image']['tmp_name'];
+
+
+             if ($image!==''){
+                 move_uploaded_file($image_tmp, "$random_number.$image");
+                 $session_user=$_SESSION['email'];
+                 $query="update users set cover_image='$random_number.$image' where email='$session_user'";
+                 $run_query=mysqli_query($con,$query);
+
+                 echo "<script>alert('Sikeresen frissítetted a boritóképed')</script>";
+                 echo "<script>window.open('profile.php?uid=$user', '_self')</script>";
+
+             }
+
+             if($profile_image!==''){
+
+                 move_uploaded_file($profile_image_tmp, "$random_number.$profile_image");
+                 $session_user=$_SESSION['email'];
+                 $query="update users set user_image='$random_number.$profile_image' where email='$session_user'";
+                 $run_query=mysqli_query($con,$query);
+
+                 echo "<script>alert('Sikeresen frissítetted a profilképed')</script>";
+                 echo "<script>window.open('profile.php?uid=$user', '_self')</script>";
+
+
+             }
+
+
+
+         }
+
+
+         ?>
+
+     </div>
+    </div>
 
        <?php
 

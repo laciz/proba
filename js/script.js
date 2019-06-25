@@ -18,7 +18,7 @@ function ajaxSend() {
 
     xmlHttp.onreadystatechange = function () {
         if(xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-        alert("Sikeresen regiszráltál,mostmár betudsz jelentkezni");
+        alert(xmlHttp.responseText);
 
 
         }
@@ -47,19 +47,19 @@ function formValidation(){
     var select = e.options[e.selectedIndex].value;
     var minChar=9;
     var maxChar=100;
-    if(fname=='' ){
-        document.getElementById("fname").placeholder='A mező nem maradhat üres,és csak betüket tartalmazhat';
+    if(fname=='' || fname.length <2  || fname.length >20){
+        document.getElementById("fname").placeholder='Minimum 2, maximum 30 karakter';
         document.getElementById("fname").style.borderColor='red';
         return false;
     }
 
-    if(lname==''){
+    if(lname==''  || lname.length <2  || lname.length >20){
         document.getElementById("lname").placeholder='A mező nem maradhat üres!';
         document.getElementById("lname").style.borderColor='red';
         return false;
     }
-    if(username==''){
-        document.getElementById("username").placeholder='A mező nem maradhat üres!';
+    if(username=='' || username.length <6 || username.length >20 ){
+        document.getElementById("username").placeholder='Minimum 6, maximum 20 karakter!';
         document.getElementById("username").style.borderColor='red';
         return false;
     }
@@ -68,8 +68,8 @@ function formValidation(){
         document.getElementById("email").style.borderColor='red';
         return false;
     }
-    if(password=='' || password<minChar){
-        document.getElementById("password").placeholder='A mező nem maradhat üres!';
+    if(password=='' || password.length <9 || password.length >30){
+        document.getElementById("password").placeholder='Minimum 9 maximum 30 karakter';
         document.getElementById("password").style.borderColor='red';
         return false;
     }
@@ -90,9 +90,36 @@ function formValidation(){
 }
 
 function SettingPop(x){
-    alert('x');
-    var span = document.getElementsByClassName("prof-settings");
+    var div=document.getElementById("mainrowcol");
+
       if (x==1){
-          span[0].style.display='block';
+          div.style.display='block';
+      }else{
+          div.style.display='none';
       }
 }
+
+/*function SettingPopAjax(){
+
+    var xmlHttp = new XMLHttpRequest();
+
+    xmlHttp.onreadystatechange = function () {
+        if(xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            alert(xmlHttp.responseText);
+
+
+        }
+
+    };
+    var form=document.querySelector('form');
+
+    var formData=new formData(form);
+
+    xmlHttp.open('POST','../php/functions.php',true);
+    /*xmlHttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+
+    xmlHttp.send(formData);
+}*/
+
+
+

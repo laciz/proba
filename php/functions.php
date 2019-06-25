@@ -18,9 +18,10 @@ function insertPost(){
             echo "<script>window.open('home.php', '_self')</script>";
         }else{
             if(strlen($image) >= 1 && strlen($content) >= 1){
-                move_uploaded_file($image_tmp, "$random_number.$image");
-                $insert = "insert into posts (user_id, post_comment, upload_image, post_date) values('$user_id', '$content', '$random_number.$image', NOW())";
 
+               $content_1=str_replace(':D','&#128513',$content);
+                move_uploaded_file($image_tmp, "$random_number.$image");
+                $insert = "insert into posts (user_id, post_comment, upload_image, post_date) values('$user_id', '$content_1', '$random_number.$image', NOW())";
                 $run = mysqli_query($con, $insert);
 
                 if($run){
@@ -111,4 +112,10 @@ function getPost()
     }
 }
 
+function profileChanges() {
+
+
+
+
+}
 
