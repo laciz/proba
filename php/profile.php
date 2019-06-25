@@ -1,27 +1,40 @@
 <!DOCTYPE html>
 <?php session_start();
 include 'connection.php';
- if (!isset($_SESSION['email'])){
-     header("Location : index.php");
- }
+if (!isset($_SESSION['email'])){
+    header("Location : index.php");
+}
 
 ?>
 <html>
 <head>
     <?php ;
-    $user=$_SESSION['email'];
-    $get_user="SELECT * from users where email='$user'";
-    $run_user=mysqli_query($con,$get_user);
-    $row=mysqli_fetch_array($run_user);
 
-    $user_name=$row['username'];
-    $user_id=$row['user_id'];
+     if(isset($_GET['uid'])){
+         $user=$_GET['uid'];
+         $get_user="SELECT * from users where user_id='$user'";
+         $run_user=mysqli_query($con,$get_user);
+         $row=mysqli_fetch_array($run_user);
+         $user_post_id=$row['user_id'];
+         $get_user_posts="SELECT * from posts where user_id='$user_post_id' order by post_date desc";
+
+         $run_user_post=mysqli_query($con,$get_user_posts);
+
+         $user_name=$row['username'];
+         $user_id=$row['user_id'];
+         $szakirany=$row['szakirany'];
+         $get_post="SELECT count(user_id) as 'post_numbers' from posts where user_id='$user_id'";
+         $run_post=mysqli_query($con,$get_post);
+         $row_post=mysqli_fetch_array($run_post);
+     }
+
+
 
     ?>
-<title><?php echo $row['f_name'];?></title>
+    <title><?php echo $row['f_name'];?></title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/bootstrap.css">
     <script src="https://kit.fontawesome.com/ec2a35f277.js"></script>
 </head>
 <body>
@@ -37,106 +50,119 @@ include 'connection.php';
     }
 </script>
 <div class="container">
-<div class="header">
-    <div class="header-logo">
+    <div class="row row-no-gutters">
+        <div id="colxs6" class="col-xs-6 col-md-4">
+            <img class="home-pic" width="155px" height="155px" src="<?php echo $row['user_image'];?>">
+            <p class="name"><?php echo $row['f_name'].'  '.$row['l_name'];?></p>
+            <?php
+         $session_user=$_SESSION['email'];
+         $session_user_query="SELECT * from users where email='$session_user'";
+         $run_session_user=mysqli_query($con,$session_user_query);
+         $row_session_user=mysqli_fetch_array($run_session_user);
+
+          if($row_session_user['user_id']==$row['user_id']){ ?>
+
+              <i class="fas fa-user-cog"></i>
+
+            <?php } ?>
 
 
-       <img class="home-pic" width="55px" height="55px" src="<?php echo $row['user_image'];?>">
-
-                  <ul>
-                      <li><p class="name"><?php echo $row['f_name'].$row['l_name'];?></p></li>
-                      <li><p class="usrname"><?php echo '@'.$row['username'].'';?></p></li>
-                      <li><p class="szakirany"><?php echo $row['szakirany'];?></p></li>
-                      <li><i class="fas fa-user-cog" onclick="SettingPop(1)"></i></li>
-                    </ul>
+            <p class="usrname"><?php echo '@'.$row['username'].'';?></p>
 
 
 
+            <div class="row row-no-gutters">
+                <div class="col-xs-6 col-md-4">
+                   Szakirány
 
+                    <?php if($szakirany=='Mechatronika'){ ?>
 
+                        <p class="szakirany"><i class="fas fa-robot"><?php echo ' '.$row['szakirany'].'';?></i></p>
 
+                    <?php } ?>
+                    <?php if($szakirany=='Informatika'){ ?>
 
+                        <p class="szakirany"><i class="fas fa-laptop-code"><?php echo ' '.$row['szakirany'].'';?></i></p>
 
-       <!-- <form class="upld" method="POST" action="profile.php?u_id=<?php echo $user_id?>" enctype="multipart/form-data">
-        <input type="hidden" name="size" value="1000000">
+                    <?php } ?>
+                    <?php if($szakirany=='Gépészet'){ ?>
 
-        <input type="file" name="image">
-        <button type="submit" name="upload">Feltöltés</button>
+                        <p class="szakirany"><i class="fas fa-pencil-ruler"><?php echo ' '.$row['szakirany'].'';?></i></p>
 
-        </form>-->
-        <?php
-        // If upload button is clicked ...
-        if (isset($_POST['upload'])) {
-        // Get image name
-        $image = $_FILES['image']['name'];
-        $image_tmp=$_FILES['image']['tmp_name'];
-        $random_number=rand(1,100);
-        if($image==''){
-            echo "<script>alert('Válassz ki egy képet')</script>";
-        exit();
-        }else{
-            move_uploaded_file($image_tmp,"$image.$random_number");
-            $update="update users set user_image='$image.$random_number' where user_id=$user_id";
-            $run=mysqli_query($con,$update);
-            if ($run){
-                echo "<script>alert('Siker');</script>";
-                echo "<script>window.open('profile.php?u_id=$user_id','_self')</script>";
-            }
-        }
-        // image file directory
-        $target = "images/".basename($image);
+                    <?php } ?>
+                    <?php if($szakirany=='Gépészet'){ ?>
 
-        $sql = "INSERT INTO users (user_image) VALUES ('$image')";
-        // execute query
-        mysqli_query($con, $sql);
+                        <p class="szakirany"><i class="fas fa-pencil-ruler"><?php echo ' '.$row['szakirany'].'';?></i></p>
 
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-        $msg = "Image uploaded successfully";
-        }else{
-        $msg = "Failed to upload image";
-        }
-        }
+                    <?php } ?>
+                    <?php if($szakirany=='Menedzsment'){ ?>
 
-        ?>
+                        <p class="szakirany"><i class=" fas fa-tasks"><?php echo ' '.$row['szakirany'].'';?></i></p>
 
+                    <?php } ?>
 
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    Bejegyzések
+                    <p class="post_number"> <?php echo $row_post['post_numbers'];?> közzétett</p>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    Csatlakozva
+                    <p class="reg_date"> <?php echo $row['reg_date'];?></p>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-xs-6 col-md-4">
+             <img src="<?php echo $row['cover_image'];?>" width="700px" height="300px">
 
     </div>
-    <div class="header-info">
-        <div class="nav">
-        <a href="x"><i class="far fa-comments"></i>Üzenetek</a>
-        <a href="x"><i class="far fa-bell"></i>Értesítések</a>
-        <a href="x"><i class="fas fa-blog"></i>Bejegyzések</a></div>
-    </div>
-    <div class="header-login">
-        <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Kijelentkezés</a>
+        <div class="container">
+            <div class="row">
+                <div id="profilecol" class="col">
 
+                    <a class="mainmenu" href="x"><i class="far fa-comments"></i>Üzenetek</a>
+                    <a href="x"><i class="far fa-bell"></i>Értesítések</a>
+                    <a href="home.php"><i class="fas fa-blog"></i>Bejegyzések</a></div>
+                </div>
 
-        </a>
-    </div>
+            </div>
+
+        </div>
+
+       <?php
+
+       while ($row_user_post = mysqli_fetch_array($run_user_post)) {
+
+           $username=$row['username'];
+           $user_image=$row['user_image'];
+           $post_time=$row_user_post['post_date'];
+           $content=$row_user_post['post_comment'];
+           $image=$row_user_post['upload_image'];
+
+       echo "
+     <div id='maincnt' class=\"container\">
+  <div  id='mainrow-1' class=\"row\">
+    <div class=\"col\"> <p class='usr'>@$username</p>
+    <img  class='userimg' src='$user_image' width='32px' height='32px'><p class='date'> $post_time</p></div>
+    <div class=\"col\"><p class='cnt'>$content</p>
+    <img class='imig' src='$image' width='422px' height='422px'></div>
+    <div class=\"col\"> </div>
+  </div>
 </div>
-<div class="main">
-   <div class="sett"></div>
-    <div class="settings">
+                     
+"; }
+      if($row_post['post_numbers']<1){
+          echo "
+          <div id='maincnt' class=\"container\"><h3>Még nincsenek bejegyzések</h3></div>";
+      }
 
 
-        <a onclick="SettingPop(2)" <i class="fas fa-times-circle"></i></a>
+
+       ?>
 
 
-        <h3>Beállítások</h3>
-        <h4>Profilkép frissítése</h4>
-         <form class="upld" method="POST" action="profile.php?u_id=<?php echo $user_id?>" enctype="multipart/form-data">
-        <input type="hidden" name="size" value="1000000">
-
-        <input type="file" name="image">
-        <button type="submit" name="upload">Feltöltés</button>
-             <img class="home-pic" width="55px" height="55px" src="<?php echo $row['user_image'];?>">
-
-        </form>
-    </div>
-    <div class="sett2"></div>
 </div>
-<div class="footer"></div>
-</div>
+
 </body>
 </html>
