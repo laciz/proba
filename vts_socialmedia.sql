@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 25, 2019 at 11:12 PM
+-- Generation Time: Jun 26, 2019 at 05:44 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -25,6 +25,42 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `comments`
+--
+
+DROP TABLE IF EXISTS `comments`;
+CREATE TABLE IF NOT EXISTS `comments` (
+  `com_id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `comment` varchar(255) NOT NULL,
+  `comment_author` varchar(255) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`com_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`com_id`, `post_id`, `user_id`, `comment`, `comment_author`, `date`) VALUES
+(1, 73, 23, '       HozzdadaÃ¡szÃ³lok\r\n', 'valcso', '2019-06-26 15:53:21'),
+(2, 73, 23, '       HozzÃ¡szÃ³lok\r\ndada', 'valcso', '2019-06-26 15:54:29'),
+(3, 68, 23, '       HozzÃ¡szÃ³lok123\r\n', 'valcso', '2019-06-26 15:54:44'),
+(4, 73, 23, '      1\r\n', 'valcso', '2019-06-26 16:03:14'),
+(5, 73, 23, '      XXX\r\n', 'valcso', '2019-06-26 16:43:22'),
+(6, 73, 23, '      \r\nXXXXX', 'valcso', '2019-06-26 16:44:59'),
+(7, 73, 23, '      dda\r\n', 'valcso', '2019-06-26 16:55:03'),
+(8, 73, 23, '      \r\ndasdadasdadasdadasdadasdadasdadasdadasdadasdadasdadasda', 'valcso', '2019-06-26 17:04:47'),
+(9, 73, 23, '      dasdadasdadasdadasdadasdadasdadasdadasdadasdadasdadasdadasdadasdadasdadasdadasdadasdadasdadasdadasdadasdadasda\r\n', 'valcso', '2019-06-26 17:12:31'),
+(10, 75, 23, '      Hah kiralysag\r\n', 'valcso', '2019-06-26 17:25:47'),
+(11, 79, 23, '   JÃ³ mese!', 'valcso', '2019-06-26 17:31:16'),
+(12, 80, 23, '      \r\nUUUh Ã¶reg ez  nan jÃ³ kÃ©p :D ', 'valcso', '2019-06-26 17:31:54'),
+(13, 81, 23, '      \r\nUh oreg ez nnan jo kep :D ', 'valcso', '2019-06-26 17:32:35');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `posts`
 --
 
@@ -32,18 +68,19 @@ DROP TABLE IF EXISTS `posts`;
 CREATE TABLE IF NOT EXISTS `posts` (
   `post_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `post_comment` varchar(500) NOT NULL,
+  `post_comment` varchar(3000) NOT NULL,
   `upload_image` varchar(255) NOT NULL,
   `post_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`post_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=69 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=82 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `posts`
 --
 
 INSERT INTO `posts` (`post_id`, `user_id`, `post_comment`, `upload_image`, `post_date`) VALUES
-(68, 23, 'Miiiily meghat&oacute; pillanat ez, ez az elsÅ‘ poszt a platformon &#128513 &#128513 &#128513 &#128513 ', '37.62365191_1615532908586997_9202529621424209920_n.png', '2019-06-25 23:09:22');
+(68, 23, 'Miiiily meghat&oacute; pillanat ez, ez az elsÅ‘ poszt a platformon &#128513 &#128513 &#128513 &#128513 ', '37.62365191_1615532908586997_9202529621424209920_n.png', '2019-06-25 23:09:22'),
+(81, 23, '&#128513 &#128513', '64.IMG_1087.jpg', '2019-06-26 17:32:25');
 
 -- --------------------------------------------------------
 
@@ -66,14 +103,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `reg_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `cover_image` varchar(255) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`user_id`, `f_name`, `l_name`, `username`, `password`, `email`, `szakirany`, `user_image`, `posts`, `recovery_account`, `reg_date`, `cover_image`) VALUES
-(23, 'Horváth ', 'Valentin', 'valcso', 'e6361e15145d1593dd17494c74827689', 'valcso@gmail.com', 'Informatika', '89.2.jpg', 'yes', 'lol', '2019-06-24 22:18:18', '14.07b1bfdf9c70a156380531e8b4faf75f.jpg');
+(23, 'Horváth ', 'Valentin', 'valcso', 'e6361e15145d1593dd17494c74827689', 'valcso@gmail.com', 'Informatika', '89.2.jpg', 'yes', 'lol', '2019-06-24 22:18:18', '14.07b1bfdf9c70a156380531e8b4faf75f.jpg'),
+(44, 'Marta', 'Martavoci', 'martoavic', '838a42fc6c9665f7794b6557c6661bd2', 'martovic@mart.com', 'Menedzsment', 'default.png', 'yes', 'lol', '2019-06-26 15:11:03', 'cover.jpg');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

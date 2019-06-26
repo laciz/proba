@@ -121,5 +121,21 @@ function SettingPop(x){
     xmlHttp.send(formData);
 }*/
 
+function commentsAjax(){
 
+    var xmlHttp = new XMLHttpRequest();
+
+    xmlHttp.onreadystatechange = function () {
+        if(xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+           console.log(xmlHttp.responseText);
+
+
+        }
+
+    };
+
+    xmlHttp.open('GET','../php/showpost.php',true);
+    xmlHttp.send();
+
+}
 

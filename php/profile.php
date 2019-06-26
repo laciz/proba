@@ -192,15 +192,20 @@ if (!isset($_SESSION['email'])){
            $post_time=$row_user_post['post_date'];
            $content=$row_user_post['post_comment'];
            $image=$row_user_post['upload_image'];
+           $post_id=$row_user_post['post_id'];
 
        echo "
      <div id='maincnt' class=\"container\">
   <div  id='mainrow-1' class=\"row\">
+  
     <div class=\"col\"> <p class='usr'>@$username</p>
-    <img  class='userimg' src='$user_image' width='32px' height='32px'><p class='date'> $post_time</p></div>
-    <div class=\"col\"><p class='cnt'>$content</p>
+    <img  class='userimg' src='$user_image' width='32px' height='32px'><p class='date'> $post_time</p>
+    </div>
+    
+    <div  id=\"delcol\" class=\"col\"><p class='cnt'>$content</p>
+    
     <img class='imig' src='$image' width='422px' height='422px'></div>
-    <div class=\"col\"> </div>
+    <div class=\"col\"> <a  href='delete_post.php?uid=$user&postid=$post_id'<i id=\"del\" class=\"fas fa-trash-alt\"></i></a></div>
   </div>
 </div>
                      

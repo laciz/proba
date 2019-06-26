@@ -13,8 +13,8 @@ function insertPost(){
         $image_tmp = $_FILES['image']['tmp_name'];
         $random_number = rand(1, 100);
 
-        if(strlen($content) > 500){
-            echo "<script>alert('Maximum 500 karaktert adhatsz meg!')</script>";
+        if(strlen($content) > 3000){
+            echo "<script>alert('Maximum 3000 karaktert adhatsz meg!')</script>";
             echo "<script>window.open('home.php', '_self')</script>";
         }else{
             if(strlen($image) >= 1 && strlen($content) >= 1){
@@ -75,6 +75,7 @@ A posztokat kiírjuk az adatbázisból
  ****************************************/
 function getPost()
 {
+
     global $con;
     $query = "SELECT * from posts  order by post_date desc";
     $run_post = mysqli_query($con, $query);

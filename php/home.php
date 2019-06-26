@@ -1,6 +1,7 @@
 
 <?php include 'connection.php';
 include 'functions.php';
+
 session_start();
 
 ?>
@@ -13,6 +14,7 @@ session_start();
     <title>Title</title>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <script src="https://kit.fontawesome.com/ec2a35f277.js"></script>
+    <script src="../js/script.js"></script>
 
 </head>
 <body onload="loadData()">
@@ -56,12 +58,14 @@ session_start();
             </div>
         <div class="col-xs-6 col-md-4"> <form action="home.php?id=<?php echo $row['user_id'];?>" method="post" id="f" enctype="multipart/form-data">
                 <textarea class="form-control"  id="content" rows="3" name="content" placeholder="Mi jár a fejedben?"></textarea><br>
-                <!--<label class="label label-success" id="upload_image_button">-->Válassz képet
-                    <input  type="file"  name="image" class="inputfile"  size="12">
+                <!--<label class="label label-success" id="upload_image_button">-->
+                    <input  type="file"  name="image" class="inputfile"  id="inputfil" size="12">
+
                <!-- </label>-->
-                <button id="btnpost"  class="btn btn-primary" name="sub" >Küldés</button>
+                <button id="btnpost"  class="btn btn-primary" name="sub" onmouseover="commentsAjax()" >Küldés</button>
                 <?php
                 insertPost();
+
                 ?>
             </form>
 
