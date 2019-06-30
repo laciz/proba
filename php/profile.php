@@ -137,6 +137,8 @@ if (!isset($_SESSION['email'])){
 
 
         </form>
+         <br>
+         <br>
          <?php
          if (isset($_POST['sub'])){
              global $con;
