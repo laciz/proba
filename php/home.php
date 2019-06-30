@@ -44,15 +44,10 @@ session_start();
             <a  href="profile.php?<?php echo "uid=$user_id"?>"><b>Üdv, </b><?php echo ''.$row['l_name'].'';?></a>
         </div>
         <div id="frontdiv" class="col-xs-6 col-md-4">
-            <a class="mainmenu" href="x"><i class="far fa-comments"></i>Üzenetek</a>
-            <a href="x"><i class="far fa-bell"></i>Értesítések</a>
-            <a href="x"><i class="fas fa-blog"></i>Bejegyzések</a>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">#</span>
-                </div>
-                <input type="text" class="form-control" placeholder="Bejegyzések" aria-label="Bejegyzések" aria-describedby="basic-addon1">
-            </div>
+            <a class="mainmenu" href="home.php"><i class="fas fa-home"></i>Kezdőlap</a>
+            <a href="profile.php?<?php echo "uid=$user_id"?>"><i class="fas fa-user-circle"></i>Fiók</a>
+            <a href="home.php"><i class="fas fa-blog"></i>Bejegyzések</a>
+
         </div>
         <div  id="frontdivcol" class="col-xs-6 col-md-4">
 

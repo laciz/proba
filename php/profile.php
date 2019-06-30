@@ -115,9 +115,9 @@ if (!isset($_SESSION['email'])){
             <div class="row">
                 <div id="profilecol" class="col">
 
-                    <a class="mainmenu" href="messages.php?u_id=new"><i class="far fa-comments"></i>Üzenetek</a>
-                    <a href="x"><i class="far fa-bell"></i>Értesítések</a>
-                    <a href="home.php"><i class="fas fa-blog"></i>Bejegyzések</a></div>
+                    <a class="mainmenu" href="home.php"><i class="fas fa-home"></i>Kezdőlap</a>
+                    <a href="profile.php?<?php echo "uid=$user_id"?>"><i class="fas fa-user-circle"></i>Fiók</a>
+                    <a href="home.php"><i class="fas fa-blog"></i>Bejegyzések</a>
                 </div>
 
             </div>

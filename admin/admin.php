@@ -1,25 +1,23 @@
 <?php
 session_start();
-$admin_username="admin";
-$admin_pw="vKc4jF_%SG5";
+include '../php/connection.php';
 
 if (isset($_POST['login'])){
+    $username=$_POST['usrname'];
+    $password=$_POST['password'];
 
-$admin=$_POST['usrname'];
-$adminpw=$_POST['password'];
+    $select_user="SELECT * from admin where username='$username' and password='$password'";
+    $query=mysqli_query($con,$select_user);
+    $check_user=mysqli_num_rows($query);
 
-if($admin == $admin_username && $adminpw == $admin_pw){
-    $_SESSION['usrname']=$admin_username;
-    header("Location : admin_home.php");
+    if($check_user==1){
+        $_SESSION['usrname']=$username;
+        header("Location: adminhome.php");
+    }else{
+        echo "<script>alert('Hibás adatokat adtál meg..')</script>";
+        echo "<script>window.location.replace('admin.html','_self')</script>";
 
-}else{
-    echo "<script>alert('Rossz')</script>";
-
-}
-
-
-
+    }
 }else{
     echo "noset";
 }
-?>

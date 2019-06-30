@@ -18,9 +18,9 @@
         <div class="col-xs-6 col-md-4">
             <img  class="logo" width="100" height="100" src="images/logo.png">
         </div>
-        <div class="col-xs-6 col-md-4">
+        <div  id="titl" class="col-xs-6 col-md-4">
 
-            <h3>VTS közösség</h3>
+        <h3 id="til">x</h3>
         </div>
         <div class="col-xs-6 col-md-4">
             <br>
@@ -81,7 +81,7 @@
 
 </div>
 
-    <div class="col-sm">
+    <div  id="cl" class="col-sm">
         <?php
         $query="select count(username) as 'usr' from users";
         $query2="select count(post_id) as 'pst' from posts";
@@ -98,6 +98,11 @@
             <td><h6> <?php echo $row2['pst'];?> Bejegyzés</h6></td>
         </tr>
         </table>
+        <script>
+            var myJSON = '{"name":"VTS közösségi", "author":"Valentin es Zoltan", "city":"Szabadka"}';
+            var myObj = JSON.parse(myJSON);
+            document.getElementById("til").innerText = myObj.name;
+        </script>
         <table class="tbl">
             <tr>
                 <td><i class="fab fa-facebook-square"></i></td>

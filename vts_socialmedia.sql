@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 26, 2019 at 05:44 PM
+-- Generation Time: Jun 30, 2019 at 04:42 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -21,6 +21,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `vts_socialmedia`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE IF NOT EXISTS `admin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `password` text NOT NULL,
+  `username` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `password`, `username`) VALUES
+(1, 'adminpw1', 'admin');
 
 -- --------------------------------------------------------
 
@@ -72,15 +93,14 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `upload_image` varchar(255) NOT NULL,
   `post_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`post_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=82 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=83 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `posts`
 --
 
 INSERT INTO `posts` (`post_id`, `user_id`, `post_comment`, `upload_image`, `post_date`) VALUES
-(68, 23, 'Miiiily meghat&oacute; pillanat ez, ez az elsÅ‘ poszt a platformon &#128513 &#128513 &#128513 &#128513 ', '37.62365191_1615532908586997_9202529621424209920_n.png', '2019-06-25 23:09:22'),
-(81, 23, '&#128513 &#128513', '64.IMG_1087.jpg', '2019-06-26 17:32:25');
+(68, 23, 'Miiiily meghat&oacute; pillanat ez, ez az elsÅ‘ poszt a platformon &#128513 &#128513 &#128513 &#128513 ', '37.62365191_1615532908586997_9202529621424209920_n.png', '2019-06-25 23:09:22');
 
 -- --------------------------------------------------------
 
@@ -103,15 +123,39 @@ CREATE TABLE IF NOT EXISTS `users` (
   `reg_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `cover_image` varchar(255) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`user_id`, `f_name`, `l_name`, `username`, `password`, `email`, `szakirany`, `user_image`, `posts`, `recovery_account`, `reg_date`, `cover_image`) VALUES
-(23, 'Horváth ', 'Valentin', 'valcso', 'e6361e15145d1593dd17494c74827689', 'valcso@gmail.com', 'Informatika', '89.2.jpg', 'yes', 'lol', '2019-06-24 22:18:18', '14.07b1bfdf9c70a156380531e8b4faf75f.jpg'),
-(44, 'Marta', 'Martavoci', 'martoavic', '838a42fc6c9665f7794b6557c6661bd2', 'martovic@mart.com', 'Menedzsment', 'default.png', 'yes', 'lol', '2019-06-26 15:11:03', 'cover.jpg');
+(23, 'Horvath ', 'Valentin', 'valcso', 'e6361e15145d1593dd17494c74827689', 'valcso@gmail.com', 'Informatika', '89.2.jpg', 'yes', 'lol', '2019-06-24 22:18:18', '14.07b1bfdf9c70a156380531e8b4faf75f.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_messages`
+--
+
+DROP TABLE IF EXISTS `user_messages`;
+CREATE TABLE IF NOT EXISTS `user_messages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_to` int(11) NOT NULL,
+  `user_from` int(11) NOT NULL,
+  `msg_body` varchar(200) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `msg_seen` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `user_messages`
+--
+
+INSERT INTO `user_messages` (`id`, `user_to`, `user_from`, `msg_body`, `date`, `msg_seen`) VALUES
+(22, 44, 23, ' csa', '2019-06-28 10:51:35', 'no'),
+(21, 23, 44, ' Csa valcso', '2019-06-28 10:51:09', 'no');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
