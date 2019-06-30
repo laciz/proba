@@ -6,7 +6,7 @@ if (isset($_POST['fname'])){
     $fname=$_POST['fname'];
     $lname=$_POST['lname'];
     $username=$_POST['username'];
-    $email=$_POST['email'];
+    $email=$_POST['email'].'@vts.su.ac.rs';
     $password_1=$_POST['password'];
     $szakirany=$_POST['select'];
     $user_image='default.png';

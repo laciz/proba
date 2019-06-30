@@ -10293,4 +10293,13 @@ float: right;
 #cmtrow{
   padding: 10px;
 }
+.from{
+  color: red;
+}
+.to{
+  color: blue;
+}
+.mess{
+  color: orange;
+}
 /*# sourceMappingURL=bootstrap.css.map */

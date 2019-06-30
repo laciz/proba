@@ -53,7 +53,7 @@ if (!isset($_SESSION['email'])){
          $session_user_query="SELECT * from users where email='$session_user'";
          $run_session_user=mysqli_query($con,$session_user_query);
          $row_session_user=mysqli_fetch_array($run_session_user);
-
+         $session_user_id=$row_session_user['user_id'];
           if($row_session_user['user_id']==$row['user_id']){ ?>
 
               <i  id="fasfa" class="fas fa-user-cog" onclick="SettingPop(1)"> </i>
@@ -115,7 +115,7 @@ if (!isset($_SESSION['email'])){
             <div class="row">
                 <div id="profilecol" class="col">
 
-                    <a class="mainmenu" href="x"><i class="far fa-comments"></i>Üzenetek</a>
+                    <a class="mainmenu" href="messages.php?u_id=new"><i class="far fa-comments"></i>Üzenetek</a>
                     <a href="x"><i class="far fa-bell"></i>Értesítések</a>
                     <a href="home.php"><i class="fas fa-blog"></i>Bejegyzések</a></div>
                 </div>

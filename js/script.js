@@ -47,6 +47,7 @@ function formValidation(){
     var select = e.options[e.selectedIndex].value;
     var minChar=9;
     var maxChar=100;
+    var str='@';
     if(fname=='' || fname.length <2  || fname.length >20){
         document.getElementById("fname").placeholder='Minimum 2, maximum 30 karakter';
         document.getElementById("fname").style.borderColor='red';
@@ -63,7 +64,7 @@ function formValidation(){
         document.getElementById("username").style.borderColor='red';
         return false;
     }
-    if(email==''){
+    if(email=='' || email.includes(str)==true){
         document.getElementById("email").placeholder='A mező nem maradhat üres!';
         document.getElementById("email").style.borderColor='red';
         return false;

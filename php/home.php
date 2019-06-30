@@ -46,8 +46,16 @@ session_start();
         <div id="frontdiv" class="col-xs-6 col-md-4">
             <a class="mainmenu" href="x"><i class="far fa-comments"></i>Üzenetek</a>
             <a href="x"><i class="far fa-bell"></i>Értesítések</a>
-            <a href="x"><i class="fas fa-blog"></i>Bejegyzések</a></div>
+            <a href="x"><i class="fas fa-blog"></i>Bejegyzések</a>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">#</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Bejegyzések" aria-label="Bejegyzések" aria-describedby="basic-addon1">
+            </div>
+        </div>
         <div  id="frontdivcol" class="col-xs-6 col-md-4">
+
             <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Kijelentkezés</a>
         </div>
     </div>

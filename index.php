@@ -49,8 +49,8 @@
                 <input class="form-control" type="text" id="username" name="username" placeholder="A felhasználóneved">
 
 
-                <label for="email">Email..</label>
-                <input class="form-control mb-4" type="email" id="email" name="email" placeholder="Email címed">
+                <label for="email">VTS Email felhasználónév</label>
+                <input class="form-control mb-4" type="text" id="email" name="email" placeholder="@vts.su.ac.rs">
 
                 <label for="password">Jelszó..</label>
                 <input class="form-control"  type="password" id="password" name="password" placeholder="Jelszó">
